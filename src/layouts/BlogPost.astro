@@ -1,0 +1,42 @@
+---
+import Header from "../components/Header.astro"
+import LanguageList from "../components/LanguageList.astro"
+import BaseLayout from "./BaseLayout.astro"
+
+interface Props {
+  frontmatter: {
+    title: string
+    description: string
+    publishDate: string
+    coverImg: string
+    tags: string[]
+  }
+}
+
+const { frontmatter } = Astro.props
+---
+
+<BaseLayout>
+  <Header title={frontmatter.title} description={frontmatter.description} />
+
+  <article
+    class="prose prose-slate prose-blue max-w-full pb-12 dark:prose-invert sm:prose-lg"
+  >
+    <header class="not-prose w-full space-y-4">
+      <div class="max-h-48 overflow-hidden rounded sm:max-h-64">
+        <img class="w-full" src={frontmatter.coverImg} alt="" />
+      </div>
+
+      <div class="flex items-center justify-between gap-2">
+        <LanguageList lg langs={frontmatter.tags} />
+
+        <span
+          >Publicado em: {
+            new Date(frontmatter.publishDate).toLocaleDateString()
+          }</span
+        >
+      </div>
+    </header>
+    <slot />
+  </article>
+</BaseLayout>
