@@ -21,32 +21,36 @@ const projects = await Astro.glob<Frontmatter>("./_projects/*.md")
     description="Aqui estão alguns dos meus melhores projetos... E algumas coisas aleatórias também 😅"
   />
 
-  {
-    projects.map((project) => (
-      <article class="col-span-2 grid grid-cols-5 gap-2 overflow-hidden sm:grid-cols-2">
-        <div class="col-span-3 space-y-2 sm:col-span-1">
-          <header class="flex items-center gap-2 text-xl text-blue-100">
-            <h3 class="font-mono font-semibold">{project.frontmatter.title}</h3>
-            <a target="_blank" href={project.frontmatter.github}>
-              <Github />
-            </a>
-          </header>
-          <LanguageList langs={project.frontmatter.languages} />
-          <div class="prose dark:prose-invert">
-            <project.Content />
+  <div class="space-y-6">
+    {
+      projects.map((project) => (
+        <article class="col-span-2 grid grid-cols-5 gap-2 overflow-hidden sm:grid-cols-2">
+          <div class="col-span-3 space-y-2 sm:col-span-1">
+            <header class="flex items-center gap-2 text-xl text-blue-100">
+              <h3 class="font-mono font-semibold">
+                {project.frontmatter.title}
+              </h3>
+              <a target="_blank" href={project.frontmatter.github}>
+                <Github />
+              </a>
+            </header>
+            <LanguageList langs={project.frontmatter.languages} />
+            <div class="prose dark:prose-invert">
+              <project.Content />
+            </div>
           </div>
-        </div>
-        <div class="col-span-2 sm:col-span-1">
-          <div class="flex snap-x snap-mandatory overflow-hidden overflow-x-scroll rounded sm:aspect-[14/16]">
-            {project.frontmatter.pics.map((pic) => (
-              <img
-                src={pic}
-                class="pointer-events-none block h-full w-max snap-center rounded-sm"
-              />
-            ))}
+          <div class="col-span-2 sm:col-span-1">
+            <div class="flex snap-x snap-mandatory overflow-hidden overflow-x-scroll rounded sm:aspect-[14/16]">
+              {project.frontmatter.pics.map((pic) => (
+                <img
+                  src={pic}
+                  class="pointer-events-none block h-full w-max snap-center rounded-sm"
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </article>
-    ))
-  }
+        </article>
+      ))
+    }
+  </div>
 </BaseLayout>
