@@ -1,0 +1,40 @@
+---
+interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<header class="grid grid-cols-[auto_auto] items-center justify-between gap-x-6">
+  <h1 class="font-mono text-2xl font-semibold text-blue-100">
+    {title}
+  </h1>
+
+  <ul
+    class="row-span-2 flex flex-col items-end justify-end gap-x-2 text-sm sm:row-span-1 sm:flex-row sm:text-base"
+  >
+    <li
+      class="transition-colors hover:underline dark:text-blue-100 dark:hover:text-blue-300"
+    >
+      <a href="/">Home</a>
+    </li>
+    <li
+      class="transition-colors hover:underline dark:text-blue-100 dark:hover:text-blue-300"
+    >
+      <a href="/projects">Projetos</a>
+    </li>
+    <li
+      class="transition-colors hover:underline dark:text-blue-100 dark:hover:text-blue-300"
+    >
+      <a href="/blog">Blog</a>
+    </li>
+  </ul>
+
+  <p class="w-full text-pretty sm:col-span-2 dark:text-zinc-300">
+    {description}
+  </p>
+</header>
+
+<hr class="my-4 dark:border-zinc-800" />

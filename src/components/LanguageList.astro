@@ -1,0 +1,17 @@
+---
+interface Props {
+  langs: string[]
+}
+
+const { langs } = Astro.props
+---
+
+<ul class="flex max-w-full gap-2 overflow-x-scroll">
+  {
+    langs.map((t) => (
+      <li class="w-max whitespace-nowrap rounded-sm bg-blue-900/50 px-1.5 py-0.5 text-sm text-blue-300">
+        {t}
+      </li>
+    ))
+  }
+</ul>
