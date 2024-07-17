@@ -7,7 +7,9 @@ interface Props {
 const { title, description } = Astro.props
 ---
 
-<header class="grid grid-cols-[auto_auto] items-center justify-between gap-x-6">
+<header
+  class="grid grid-cols-[auto_auto] items-center justify-between gap-x-6 pt-8"
+>
   <h1 class="font-mono text-2xl font-semibold text-blue-100">
     {title}
   </h1>
