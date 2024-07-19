@@ -50,4 +50,4 @@ Para realizar o deploy do site, o processo não poderia ser mais simples. O Astr
 
 ## Conclusão
 
-Use a ferramenta certa para o trabalho. Nem sempre usar o framework mais recente é uma boa ideia.
+Nem sempre usar o framework mais legal e capaz é a melhor opção. O ecossistema Javascript está cada vez mais complexo de se trabalhar, com ferramentas novas surgindo todos os dias (veja [dayssincelastjavascriptframework](https://dayssincelastjavascriptframework.com)), mas no final das contas um site estático dá conta do recado na maioria das vezes.
