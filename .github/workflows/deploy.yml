@@ -18,7 +18,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
       - name: Install modules
-        run: yarn ci
+        run: yarn install --frozen-lockfile
       - name: Build application
         run: yarn build
       - name: Deploy to S3
