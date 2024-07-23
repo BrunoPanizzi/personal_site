@@ -4,9 +4,9 @@ github: "https://github.com/BrunoPanizzi/MyContactsFront"
 languages: ["React", "Express", "Styled Components", "Postgres"]
 pics:
   [
-    "/MyContactsHomeEmpty.png",
-    "/MyContactsHomeDark.png",
-    "/MyContactsDelete.png",
+    "/src/assets/MyContactsHomeEmpty.png",
+    "/src/assets/MyContactsHomeDark.png",
+    "/src/assets/MyContactsDelete.png",
   ]
 ---
 

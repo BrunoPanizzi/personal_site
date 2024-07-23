@@ -4,7 +4,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Como fiz meu site usando Astro"
 description: "Por que resolvi utilizar um framework que eu não conhecia para criar meu site... E como ele ficou pronto em uma semana."
 publishDate: "2024-07-17"
-coverImg: "/BlogImage1.svg"
+coverImg: "/src/assets/BlogImage1.svg"
 tags: ["Astro", "Frontend"]
 ---
 
@@ -37,7 +37,7 @@ layout: "../../layouts/BlogPost.astro"
 title: "Como fiz meu site usando Astro"
 description: "Por que resolvi utilizar um framework que eu não conhecia para criar meu site... E como ele ficou pronto em uma semana."
 publishDate: "2024-07-17"
-coverImg: "/BlogImage1.svg"
+coverImg: "/src/assets/BlogImage1.svg"
 tags: ["Astro", "Frontend"]
 ---
 ```

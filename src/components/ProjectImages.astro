@@ -1,0 +1,38 @@
+---
+import type { ImageMetadata } from "astro"
+import { Image } from "astro:assets"
+
+interface Props {
+  images: string[]
+  alt: string
+}
+
+const { images, alt } = Astro.props
+
+const resolvedImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif}",
+)
+
+images.forEach((image) => {
+  if (!resolvedImages[image])
+    throw new Error(
+      `"${image}" does not exist in glob: "src/assets/*.{jpeg,jpg,png,gif}"`,
+    )
+})
+---
+
+<div class="col-span-2 sm:col-span-1">
+  <div
+    class="snap-x snap-mandatory space-x-1 overflow-hidden overflow-x-scroll whitespace-nowrap rounded sm:aspect-[14/16]"
+  >
+    {
+      images.map((image) => (
+        <Image
+          alt={alt}
+          src={resolvedImages[image]()}
+          class="pointer-events-none inline-block h-full w-auto snap-center rounded-sm"
+        />
+      ))
+    }
+  </div>
+</div>
