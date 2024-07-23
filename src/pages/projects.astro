@@ -24,7 +24,7 @@ const projects = await Astro.glob<Frontmatter>("./_projects/*.md")
   <div class="space-y-6">
     {
       projects.map((project) => (
-        <article class="col-span-2 grid grid-cols-5 gap-2 overflow-hidden sm:grid-cols-2">
+        <article class="col-span-2 grid grid-cols-5 grid-rows-[min] gap-2 overflow-hidden sm:grid-cols-2">
           <div class="col-span-3 space-y-2 sm:col-span-1">
             <header class="flex items-center gap-2 text-xl text-blue-100">
               <h3 class="font-mono font-semibold">
@@ -35,16 +35,16 @@ const projects = await Astro.glob<Frontmatter>("./_projects/*.md")
               </a>
             </header>
             <LanguageList langs={project.frontmatter.languages} />
-            <div class="prose dark:prose-invert">
+            <div class="prose prose-sm dark:prose-invert sm:prose-base">
               <project.Content />
             </div>
           </div>
           <div class="col-span-2 sm:col-span-1">
-            <div class="flex snap-x snap-mandatory overflow-hidden overflow-x-scroll rounded sm:aspect-[14/16]">
+            <div class="snap-x snap-mandatory space-x-1 overflow-hidden overflow-x-scroll whitespace-nowrap rounded sm:aspect-[14/16]">
               {project.frontmatter.pics.map((pic) => (
                 <img
                   src={pic}
-                  class="pointer-events-none block h-full w-max snap-center rounded-sm"
+                  class="pointer-events-none inline-block h-full snap-center rounded-sm"
                 />
               ))}
             </div>
