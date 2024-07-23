@@ -1,9 +1,33 @@
 ---
+import { Image } from "astro:assets"
+import type { ImageMetadata } from "astro"
+
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Header from "../components/Header.astro"
 import LanguageList from "../components/LanguageList.astro"
 
-const posts = await Astro.glob("./blog/*.md")
+interface Post {
+  title: string
+  description: string
+  publishDate: string
+  tags: string[]
+  coverImg: string
+}
+
+const posts = await Astro.glob<Post>("./blog/*.md")
+
+const coverImages = posts.map((p) => p.frontmatter.coverImg)
+
+const resolvedImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,svg,png,gif}",
+)
+
+coverImages.forEach((image) => {
+  if (!resolvedImages[image])
+    throw new Error(
+      `"${image}" does not exist in glob: "src/assets/*.{jpeg,jpg,svg,png,gif}"`,
+    )
+})
 ---
 
 <BaseLayout title="Blog • Bruno Panizzi">
@@ -17,9 +41,9 @@ const posts = await Astro.glob("./blog/*.md")
       posts.map((post) => (
         <article class="grid gap-y-2 overflow-hidden rounded-md transition-all first-of-type:grid-cols-subgrid hover:bg-zinc-800 hover:shadow-[0_0_0_0.5rem] hover:shadow-zinc-800 sm:first-of-type:col-span-2">
           <div class="relative h-full min-h-36 w-full overflow-hidden rounded-sm">
-            <img
+            <Image
               class="absolute inset-0"
-              src={post.frontmatter.coverImg}
+              src={resolvedImages[post.frontmatter.coverImg]()}
               alt={post.frontmatter.title}
             />
           </div>
