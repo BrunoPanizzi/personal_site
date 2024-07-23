@@ -5,6 +5,8 @@ import Github from "../icons/Github.astro"
 
 import Header from "../components/Header.astro"
 import LanguageList from "../components/LanguageList.astro"
+import { Image } from "astro:assets"
+import ProjectImages from "../components/ProjectImages.astro"
 
 interface Frontmatter {
   title: string
@@ -39,16 +41,10 @@ const projects = await Astro.glob<Frontmatter>("./_projects/*.md")
               <project.Content />
             </div>
           </div>
-          <div class="col-span-2 sm:col-span-1">
-            <div class="snap-x snap-mandatory space-x-1 overflow-hidden overflow-x-scroll whitespace-nowrap rounded sm:aspect-[14/16]">
-              {project.frontmatter.pics.map((pic) => (
-                <img
-                  src={pic}
-                  class="pointer-events-none inline-block h-full snap-center rounded-sm"
-                />
-              ))}
-            </div>
-          </div>
+          <ProjectImages
+            images={project.frontmatter.pics}
+            alt={project.frontmatter.title}
+          />
         </article>
       ))
     }
