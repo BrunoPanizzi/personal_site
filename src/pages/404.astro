@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro"
+---
+
+<BaseLayout title="Página não encontrada">
+  <div class="grid min-h-screen place-items-center">
+    <div>
+      <h1 class="font-mono text-3xl font-semibold text-orange-300">
+        Parece que você está perdido...
+      </h1>
+      <p>
+        Não encontramos a página <span id="pageName">que está buscando</span>.
+      </p>
+      <a
+        class="mt-4 block text-sm text-blue-100 transition-colors hover:text-blue-300 hover:underline"
+        href="/">Voltar para a página inicial</a
+      >
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const pageName = document.getElementById("pageName")
+  if (pageName) {
+    pageName.textContent = window.location.pathname
+    pageName.classList.add("font-semibold", "text-orange-300")
+  }
+</script>
