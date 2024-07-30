@@ -23,6 +23,7 @@ images.forEach((image) => {
 
 <div class="col-span-2 sm:col-span-1">
   <div
+    id="scrollable-images"
     class="snap-x snap-mandatory space-x-1 overflow-hidden overflow-x-scroll whitespace-nowrap rounded sm:aspect-[14/16]"
   >
     {
@@ -36,3 +37,53 @@ images.forEach((image) => {
     }
   </div>
 </div>
+
+<script>
+  const scrollableImages = document.querySelectorAll("#scrollable-images")
+
+  scrollableImages.forEach((s) => {
+    const childN = s.children.length
+    const clientX = s.getBoundingClientRect().x
+
+    const stops = [...s.children].reduce((acc, child) => {
+      const x = child.getBoundingClientRect().x - clientX
+      const w = child.clientWidth
+
+      const center = x - w / 2
+
+      return [...acc, center]
+    }, [] as number[])
+
+    let currN: number = 0
+
+    function startScroll() {
+      return setInterval(() => {
+        currN = (currN + 1) % childN
+        s.scrollTo({
+          left: stops[currN],
+          behavior: "smooth",
+        })
+      }, 5000)
+    }
+
+    let interval = startScroll()
+
+    s.addEventListener("pointerleave", () => {
+      interval = startScroll()
+    })
+    s.addEventListener("pointerover", () => {
+      clearInterval(interval)
+      const scroll = s.scrollLeft
+      currN = stops.reduce(
+        (acc, c, index) => {
+          const dst = Math.abs(c - scroll)
+          if (dst < acc.dst) {
+            return { dst, index }
+          }
+          return acc
+        },
+        { dst: Infinity, index: 0 },
+      ).index
+    })
+  })
+</script>
